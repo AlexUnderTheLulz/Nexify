@@ -139,6 +139,7 @@ fun Page(navController: NavController){
 
                 Image(
                     modifier = Modifier
+                        .padding(start = 20.dp)
                         .size(20.dp),
                     painter = painterResource(id = R.drawable.search_asset),
                     contentDescription = ""
