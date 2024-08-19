@@ -50,31 +50,29 @@ fun Vacancy(vacancies: List<Vacancy>, navController: NavController){
         .background(color = Color.White),
         verticalArrangement = Arrangement.SpaceBetween) {
 
-    Column(){
+        Column(){
 
         // Отступ сверху
-        Row(
-            modifier = Modifier
+            Row(
+                modifier = Modifier
                 .fillMaxWidth()
                 .height(25.dp)
-        ) {
+            ){
+            }
 
-        }
-
-        Row(
-            modifier = Modifier
+            Row(modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)
                 .height(50.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
-        ) {
+            ) {
 
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Image(
-                    painter = painterResource(id = R.drawable.back_asset),
-                    contentDescription = ""
-                )
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Image(
+                        painter = painterResource(id = R.drawable.back_asset),
+                        contentDescription = ""
+                    )
 
                 Text(text = "Вернуться")
             }
@@ -202,9 +200,7 @@ fun Vacancy(vacancies: List<Vacancy>, navController: NavController){
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp)
-            ) {
-
-            }
+            ) {}
         }
     }
 }
