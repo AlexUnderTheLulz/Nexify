@@ -13,7 +13,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.paddingFrom
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,8 +24,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -134,7 +139,7 @@ fun Page(navController: NavController){
 
                 Image(
                     modifier = Modifier
-                        .padding(start = 16.dp)
+                        .padding(start = 17.dp)
                         .size(20.dp),
                     painter = painterResource(id = R.drawable.search_asset),
                     contentDescription = ""
@@ -396,35 +401,36 @@ fun Page(navController: NavController){
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Column (modifier = Modifier
-                    .clickable { navController.navigate("MainPage") },
-
-                    horizontalAlignment = Alignment.CenterHorizontally) {
-
-                    Image(modifier = Modifier
-                        .size(25.dp),
+                Column(
+                    modifier = Modifier
+                        .clickable { navController.navigate("MainPage") },
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Image(
+                        modifier = Modifier
+                            .size(25.dp),
                         painter = painterResource(id = R.drawable.home),
                         contentDescription = ""
                     )
 
                     Text(text = "Главная")
                 }
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
-                Column (horizontalAlignment = Alignment.CenterHorizontally){
-
-                    Image(modifier = Modifier
-                        .size(25.dp),
+                    Image(
+                        modifier = Modifier
+                            .size(25.dp),
                         painter = painterResource(id = R.drawable.ticket),
                         contentDescription = ""
                     )
 
                     Text(text = "Лента")
                 }
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
-                Column (horizontalAlignment = Alignment.CenterHorizontally){
-
-                    Image(modifier = Modifier
-                        .size(25.dp),
+                    Image(
+                        modifier = Modifier
+                            .size(25.dp),
                         painter = painterResource(id = R.drawable.menu),
                         contentDescription = ""
                     )
@@ -432,6 +438,7 @@ fun Page(navController: NavController){
                     Text(text = "Меню")
                 }
             }
+
             Row(
                 modifier = Modifier
                     .fillMaxWidth()

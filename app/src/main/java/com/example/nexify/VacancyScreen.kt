@@ -171,6 +171,7 @@ fun Vacancy(vacancies: List<Vacancy>, navController: NavController){
         // Нижняя панель навигации
 
         Column() {
+
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -180,19 +181,34 @@ fun Vacancy(vacancies: List<Vacancy>, navController: NavController){
             ) {
                 Column (modifier = Modifier
                     .clickable { navController.navigate("MainPage") },
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Image(modifier = Modifier
+                        .size(25.dp),
+                        painter = painterResource(id = R.drawable.home),
+                        contentDescription = ""
+                    )
 
-                    horizontalAlignment = Alignment.CenterHorizontally) {
-                    Image(painter = painterResource(id = R.drawable.home_asset),
-                        contentDescription = "")
                     Text(text = "Главная")
                 }
                 Column (horizontalAlignment = Alignment.CenterHorizontally){
-                    Image(painter = painterResource(id = R.drawable.ticket_asset),
-                        contentDescription = "")
+
+                    Image(modifier = Modifier
+                        .size(25.dp),
+                        painter = painterResource(id = R.drawable.ticket),
+                        contentDescription = ""
+                    )
+
                     Text(text = "Лента")
                 }
                 Column (horizontalAlignment = Alignment.CenterHorizontally){
-                    Image(painter = painterResource(id = R.drawable.menu_asset), contentDescription = "")
+
+                    Image(modifier = Modifier
+                        .size(25.dp),
+                        painter = painterResource(id = R.drawable.menu),
+                        contentDescription = ""
+                    )
+
                     Text(text = "Меню")
                 }
             }
@@ -204,9 +220,6 @@ fun Vacancy(vacancies: List<Vacancy>, navController: NavController){
         }
     }
 }
-
-
-//  разобраться с этим!!
 
 @Composable
 fun VacancyCard(vacancy: Vacancy){
