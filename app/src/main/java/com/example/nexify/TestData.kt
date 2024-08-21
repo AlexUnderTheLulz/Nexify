@@ -89,6 +89,9 @@ val DevSecOpsMeetup = EventsParties (
 
 // тестовые данные о стажировках
 
+
+
+
 val jobs = listOf(Google, Yandex, VK, MTS)
 
 val events = listOf(DevSecOpsMeetup)

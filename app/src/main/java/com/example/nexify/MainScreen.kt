@@ -264,7 +264,7 @@ fun Page(navController: NavController){
                     .height(100.dp)
                     .padding(8.dp)
                     .border((1.dp), color = Color.Black, RoundedCornerShape(20.dp))
-                    .clickable { navController.navigate("VacancyScreen")}
+                    .clickable { navController.navigate("VacancyScreen") }
             ) {
                 Column(modifier = Modifier
                     .fillMaxHeight(),
@@ -300,7 +300,7 @@ fun Page(navController: NavController){
                     .height(100.dp)
                     .padding(8.dp)
                     .border((1.dp), color = Color.Black, RoundedCornerShape(20.dp))
-                    .clickable { navController.navigate("InternshipsScreen")},
+                    .clickable { navController.navigate("InternshipsScreen") },
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Column(modifier = Modifier
@@ -358,7 +358,7 @@ fun Page(navController: NavController){
                     .height(100.dp)
                     .padding(8.dp)
                     .border((1.dp), color = Color.Black, RoundedCornerShape(20.dp))
-                    .clickable { navController.navigate("EventsScreen")}
+                    .clickable { navController.navigate("EventsScreen") }
             ) {
                 Column(modifier = Modifier
                     .fillMaxHeight(),
@@ -410,10 +410,13 @@ fun Page(navController: NavController){
                         modifier = Modifier
                             .size(25.dp),
                         painter = painterResource(id = R.drawable.home),
+                        colorFilter = ColorFilter.tint(color = colorResource(id = R.color.light_purple)),
                         contentDescription = ""
                     )
 
-                    Text(text = "Главная")
+                    Text(
+                        color = colorResource(id = R.color.light_purple),
+                        text = "Главная")
                 }
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
 

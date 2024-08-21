@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Canvas
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.motionEventSpy
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -68,7 +69,9 @@ fun Internships(vacancies: List<Vacancy>, navController: NavController){
                 verticalAlignment = Alignment.CenterVertically
             ) {
 
-                Row(verticalAlignment = Alignment.CenterVertically) {
+                Row(modifier = Modifier
+                    .clickable { navController.navigate("MainPage") },
+                verticalAlignment = Alignment.CenterVertically) {
                     Image(
                         painter = painterResource(id = R.drawable.back_asset),
                         contentDescription = ""
@@ -99,11 +102,12 @@ fun Internships(vacancies: List<Vacancy>, navController: NavController){
                     .padding(8.dp),
                 horizontalArrangement = Arrangement.Center
             ) {
-                Image(
-                    modifier = Modifier
-                        .size(400.dp),
+
+                Image(modifier = Modifier
+                    .clip(shape = RoundedCornerShape(15.dp)),
+
                     painter = painterResource(
-                        id = R.drawable.img
+                        id = R.drawable.internship
                     ),
                     contentDescription = ""
                 )

@@ -68,7 +68,9 @@ fun Vacancy(vacancies: List<Vacancy>, navController: NavController){
             verticalAlignment = Alignment.CenterVertically
             ) {
 
-                Row(verticalAlignment = Alignment.CenterVertically) {
+                Row(modifier = Modifier
+                    .clickable { navController.navigate("MainPage") },
+                    verticalAlignment = Alignment.CenterVertically) {
                     Image(
                         painter = painterResource(id = R.drawable.back_asset),
                         contentDescription = ""
@@ -99,11 +101,13 @@ fun Vacancy(vacancies: List<Vacancy>, navController: NavController){
                 .padding(8.dp),
             horizontalArrangement = Arrangement.Center
         ) {
-            Image(
-                modifier = Modifier
-                    .size(400.dp),
+
+            Image(modifier = Modifier
+                   // .size(400.dp)
+                .clip(shape = RoundedCornerShape(15.dp)),
+
                 painter = painterResource(
-                    id = R.drawable.img
+                    id = R.drawable.working
                 ),
                 contentDescription = ""
             )
