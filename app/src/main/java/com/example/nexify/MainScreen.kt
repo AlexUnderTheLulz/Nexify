@@ -299,7 +299,8 @@ fun Page(navController: NavController){
                     .fillMaxWidth()
                     .height(100.dp)
                     .padding(8.dp)
-                    .border((1.dp), color = Color.Black, RoundedCornerShape(20.dp)),
+                    .border((1.dp), color = Color.Black, RoundedCornerShape(20.dp))
+                    .clickable { navController.navigate("InternshipsScreen")},
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Column(modifier = Modifier
@@ -350,8 +351,6 @@ fun Page(navController: NavController){
                     }
                 }
 
-
-
             }
             Row(
                 modifier = Modifier
@@ -359,6 +358,7 @@ fun Page(navController: NavController){
                     .height(100.dp)
                     .padding(8.dp)
                     .border((1.dp), color = Color.Black, RoundedCornerShape(20.dp))
+                    .clickable { navController.navigate("EventsScreen")}
             ) {
                 Column(modifier = Modifier
                     .fillMaxHeight(),
