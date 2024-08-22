@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.paddingFrom
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -391,9 +392,12 @@ fun Page(navController: NavController){
 
         // "Нижний" отдел экрана -- раздел с вакансиями и мероприятиями
 
-        Column() {
 
 
+        BottomAppBar(
+
+            containerColor = Color.White
+        ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -416,7 +420,8 @@ fun Page(navController: NavController){
 
                     Text(
                         color = colorResource(id = R.color.light_purple),
-                        text = "Главная")
+                        text = "Главная"
+                    )
                 }
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
@@ -440,14 +445,6 @@ fun Page(navController: NavController){
 
                     Text(text = "Меню")
                 }
-            }
-
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(50.dp)
-            ) {
-
             }
         }
     }

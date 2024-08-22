@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -174,8 +175,10 @@ fun Internships(vacancies: List<Vacancy>, navController: NavController){
 
         // Нижняя панель навигации
 
-        Column() {
+        BottomAppBar(
 
+            containerColor = Color.White
+        ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -183,10 +186,12 @@ fun Internships(vacancies: List<Vacancy>, navController: NavController){
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
+
                 Column (modifier = Modifier
                     .clickable { navController.navigate("MainPage") },
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
+
                     Image(modifier = Modifier
                         .size(25.dp),
                         painter = painterResource(id = R.drawable.home),
@@ -195,6 +200,7 @@ fun Internships(vacancies: List<Vacancy>, navController: NavController){
 
                     Text(text = "Главная")
                 }
+
                 Column (horizontalAlignment = Alignment.CenterHorizontally){
 
                     Image(modifier = Modifier
@@ -205,6 +211,7 @@ fun Internships(vacancies: List<Vacancy>, navController: NavController){
 
                     Text(text = "Лента")
                 }
+
                 Column (horizontalAlignment = Alignment.CenterHorizontally){
 
                     Image(modifier = Modifier
@@ -215,12 +222,9 @@ fun Internships(vacancies: List<Vacancy>, navController: NavController){
 
                     Text(text = "Меню")
                 }
+
+
             }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(50.dp)
-            ) {}
         }
     }
 }
