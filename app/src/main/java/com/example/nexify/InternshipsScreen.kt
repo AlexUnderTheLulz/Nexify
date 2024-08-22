@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Canvas
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.motionEventSpy
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -37,13 +38,13 @@ import androidx.navigation.compose.rememberNavController
 
 @Preview
 @Composable
-fun MainVacancy(){
-    Vacancy(jobs, navController = rememberNavController())
+fun MainInternships(){
+    Internships(jobs, navController = rememberNavController())
 }
 
 @Composable
 
-fun Vacancy(vacancies: List<Vacancy>, navController: NavController){
+fun Internships(vacancies: List<Vacancy>, navController: NavController){
 
     Column (modifier = Modifier
         .fillMaxSize()
@@ -53,11 +54,11 @@ fun Vacancy(vacancies: List<Vacancy>, navController: NavController){
 
         Column(){
 
-        // Отступ сверху
+            // Отступ сверху
             Row(
                 modifier = Modifier
-                .fillMaxWidth()
-                .height(25.dp)
+                    .fillMaxWidth()
+                    .height(25.dp)
             ){
             }
 
@@ -65,101 +66,100 @@ fun Vacancy(vacancies: List<Vacancy>, navController: NavController){
                 .fillMaxWidth()
                 .padding(8.dp)
                 .height(50.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
             ) {
 
                 Row(modifier = Modifier
                     .clickable { navController.navigate("MainPage") },
-                    verticalAlignment = Alignment.CenterVertically) {
+                verticalAlignment = Alignment.CenterVertically) {
                     Image(
                         painter = painterResource(id = R.drawable.back_asset),
                         contentDescription = ""
                     )
 
-                Text(text = "Вернуться")
+                    Text(text = "Вернуться")
+                }
+
+                Row() {
+                    Box(modifier = Modifier) {
+                        Image(
+                            painter = painterResource(id = R.drawable.search2_asset),
+                            contentDescription = ""
+                        )
+                    }
+                    Box(modifier = Modifier) {
+                        Image(
+                            painter = painterResource(id = R.drawable.filter_asset),
+                            contentDescription = ""
+                        )
+                    }
+                }
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(225.dp)
+                    .padding(8.dp),
+                horizontalArrangement = Arrangement.Center
+            ) {
+
+                Image(modifier = Modifier
+                    .clip(shape = RoundedCornerShape(15.dp)),
+
+                    painter = painterResource(
+                        id = R.drawable.internship
+                    ),
+                    contentDescription = ""
+                )
             }
 
-            Row() {
-                Box(modifier = Modifier) {
-                    Image(
-                        painter = painterResource(id = R.drawable.search2_asset),
-                        contentDescription = ""
-                    )
-                }
-                Box(modifier = Modifier) {
-                    Image(
-                        painter = painterResource(id = R.drawable.filter_asset),
-                        contentDescription = ""
-                    )
-                }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(40.dp)
+                    .padding(8.dp)
+            ) {
+
+                Text(
+                    fontSize = 20.sp,
+                    text = "Стажировки"
+                )
+            }
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(70.dp)
+                    .padding(8.dp)
+            ) {
+
+                Text(
+                    fontSize = 13.sp,
+                    text = "Присоединяйтесь к сообществу, поскольку в течение 33 дней мы готовимся расслабиться и почувствовать радость вместе с разумом и сеансом счастья по всему миру."
+                )
+            }
+
+            Row (modifier = Modifier
+                .fillMaxWidth()
+                .height(0.7.dp)
+                .padding(start = 8.dp, end = 8.dp)
+                .background(color = colorResource(id = R.color.dart_gray_idk))){
+
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(40.dp)
+                    .padding(8.dp)
+            ) {
+
+                Text(
+                    fontSize = 20.sp,
+                    text = "Рекомендации"
+                )
             }
         }
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(225.dp)
-                .padding(8.dp),
-            horizontalArrangement = Arrangement.Center
-        ) {
-
-            Image(modifier = Modifier
-                   // .size(400.dp)
-                .clip(shape = RoundedCornerShape(15.dp)),
-
-                painter = painterResource(
-                    id = R.drawable.working
-                ),
-                contentDescription = ""
-            )
-        }
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(40.dp)
-                .padding(8.dp)
-        ) {
-
-            Text(
-                fontSize = 20.sp,
-                text = "Вакансии"
-            )
-        }
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(70.dp)
-                .padding(8.dp)
-        ) {
-
-            Text(
-                fontSize = 13.sp,
-                text = "Присоединяйтесь к сообществу, поскольку в течение 33 дней мы готовимся расслабиться и почувствовать радость вместе с разумом и сеансом счастья по всему миру."
-            )
-        }
-
-        Row (modifier = Modifier
-            .fillMaxWidth()
-            .height(0.7.dp)
-            .padding(start = 8.dp, end = 8.dp)
-            .background(color = colorResource(id = R.color.dart_gray_idk))){
-
-        }
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(40.dp)
-                .padding(8.dp)
-        ) {
-
-            Text(
-                fontSize = 20.sp,
-                text = "Рекомендации"
-            )
-        }
-    }
 
         // сделать высоту динамической, чтобы не перекрывало нижнюю часть
 
@@ -167,9 +167,9 @@ fun Vacancy(vacancies: List<Vacancy>, navController: NavController){
             .height(275.dp)
             .padding(start = 8.dp, end = 8.dp)){
             items(vacancies) { vacancy ->
-                VacancyCard(vacancy = vacancy)
+                InternshipsCard(vacancy = vacancy)
                 Spacer(modifier = Modifier
-                .height(8.dp))}
+                    .height(8.dp))}
         }
 
 
@@ -230,7 +230,7 @@ fun Vacancy(vacancies: List<Vacancy>, navController: NavController){
 }
 
 @Composable
-fun VacancyCard(vacancy: Vacancy){
+fun InternshipsCard(vacancy: Vacancy){
 
     Row (modifier = Modifier
         .fillMaxWidth()

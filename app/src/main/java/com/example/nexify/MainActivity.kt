@@ -23,14 +23,27 @@ class MainActivity : ComponentActivity() {
         setContent {
             val navController = rememberNavController()
 
-            NavHost(navController = navController, startDestination = "MainPage", builder = {
+            NavHost(
+                navController = navController,
+                startDestination = "MainPage", builder = {
+
                 composable("MainPage"){
                     Page(navController)
                 }
+
                 composable("VacancyScreen"){
                     Vacancy(vacancies = jobs,navController)
                 }
-            })
+
+                composable("EventsScreen"){
+                    Events(vacancies = jobs, navController)
+                }
+
+                composable("InternshipsScreen"){
+                    Internships(vacancies = jobs, navController)
+                }
+            }
+            )
         }
     }
 }

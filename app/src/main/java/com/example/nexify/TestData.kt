@@ -1,9 +1,7 @@
 package com.example.nexify
 
-import android.hardware.biometrics.BiometricManager.Strings
-
 data class Vacancy (
-    val id: Int,
+
     val title: String,
 
     val bpoint1: String,
@@ -14,8 +12,27 @@ data class Vacancy (
     val howLongAgo: String
 )
 
+data class EventsParties (
+
+    val title: String,
+
+    val datetime: String,
+    val location: String,
+    val tag: String,
+    val format: String
+)
+
+data class Internships (
+
+    val title: String,
+
+    val salary: Int,
+    val howLongAgo: String
+)
+
+// тестовые данные о вакансиях
+
 val Google = Vacancy(
-    1,
     "Android Developer",
 
     "Senior",
@@ -27,7 +44,6 @@ val Google = Vacancy(
 )
 
 val Yandex = Vacancy(
-    2,
     "Project Manager",
 
     "Middle",
@@ -39,7 +55,6 @@ val Yandex = Vacancy(
 )
 
 val VK = Vacancy(
-    3,
     "Backend Developer",
 
     "Junior",
@@ -51,7 +66,6 @@ val VK = Vacancy(
 )
 
 val MTS = Vacancy(
-    4,
     "Kotlin Developer",
 
     "Middle",
@@ -62,4 +76,24 @@ val MTS = Vacancy(
     "30 минут назад"
 )
 
+// тестовые данные о мероприятиях
+
+val DevSecOpsMeetup = EventsParties (
+    "DevSecOps Meetup",
+
+    "21 августа 19:00",
+    "Москва",
+    "DevOps",
+    "offline"
+)
+
+// тестовые данные о стажировках
+
+
+
+
 val jobs = listOf(Google, Yandex, VK, MTS)
+
+val events = listOf(DevSecOpsMeetup)
+
+val internships = listOf("")

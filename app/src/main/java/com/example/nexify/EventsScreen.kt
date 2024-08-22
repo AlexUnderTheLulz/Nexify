@@ -1,5 +1,4 @@
 package com.example.nexify
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -9,12 +8,14 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.windowInsetsEndWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -35,15 +36,15 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 
 
-@Preview
+@Preview(showSystemUi = true)
 @Composable
-fun MainVacancy(){
-    Vacancy(jobs, navController = rememberNavController())
+fun MainEvents(){
+    Events(jobs, navController = rememberNavController())
 }
 
 @Composable
 
-fun Vacancy(vacancies: List<Vacancy>, navController: NavController){
+fun Events(vacancies: List<Vacancy>, navController: NavController){
 
     Column (modifier = Modifier
         .fillMaxSize()
@@ -51,13 +52,14 @@ fun Vacancy(vacancies: List<Vacancy>, navController: NavController){
         .background(color = Color.White),
         verticalArrangement = Arrangement.SpaceBetween) {
 
-        Column(){
+        Column(modifier = Modifier
+            .weight(1f)){
 
-        // Отступ сверху
+            // Отступ сверху
             Row(
                 modifier = Modifier
-                .fillMaxWidth()
-                .height(25.dp)
+                    .fillMaxWidth()
+                    .height(15.dp)
             ){
             }
 
@@ -65,8 +67,8 @@ fun Vacancy(vacancies: List<Vacancy>, navController: NavController){
                 .fillMaxWidth()
                 .padding(8.dp)
                 .height(50.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
             ) {
 
                 Row(modifier = Modifier
@@ -77,100 +79,99 @@ fun Vacancy(vacancies: List<Vacancy>, navController: NavController){
                         contentDescription = ""
                     )
 
-                Text(text = "Вернуться")
+                    Text(text = "Вернуться")
+                }
+
+                Row() {
+                    Box(modifier = Modifier) {
+                        Image(
+                            painter = painterResource(id = R.drawable.search2_asset),
+                            contentDescription = ""
+                        )
+                    }
+                    Box(modifier = Modifier) {
+                        Image(
+                            painter = painterResource(id = R.drawable.filter_asset),
+                            contentDescription = ""
+                        )
+                    }
+                }
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(225.dp)
+                    .padding(8.dp),
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Image(modifier = Modifier
+                    // .size(400.dp)
+                    .clip(shape = RoundedCornerShape(15.dp)),
+
+                    painter = painterResource(
+                        id = R.drawable.cheers
+                    ),
+                    contentDescription = ""
+                )
             }
 
-            Row() {
-                Box(modifier = Modifier) {
-                    Image(
-                        painter = painterResource(id = R.drawable.search2_asset),
-                        contentDescription = ""
-                    )
-                }
-                Box(modifier = Modifier) {
-                    Image(
-                        painter = painterResource(id = R.drawable.filter_asset),
-                        contentDescription = ""
-                    )
-                }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(40.dp)
+                    .padding(8.dp)
+            ) {
+
+                Text(
+                    fontSize = 20.sp,
+                    text = "Мероприятия"
+                )
+            }
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(70.dp)
+                    .padding(8.dp)
+            ) {
+
+                Text(
+                    fontSize = 13.sp,
+                    text = "Присоединяйтесь к сообществу, поскольку в течение 33 дней мы готовимся расслабиться и почувствовать радость вместе с разумом и сеансом счастья по всему миру."
+                )
+            }
+
+            Row (modifier = Modifier
+                .fillMaxWidth()
+                .height(0.7.dp)
+                .padding(start = 8.dp, end = 8.dp)
+                .background(color = colorResource(id = R.color.dart_gray_idk))){
+
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(40.dp)
+                    .padding(8.dp)
+            ) {
+
+                Text(
+                    fontSize = 20.sp,
+                    text = "Рекомендации"
+                )
+            }
+            // сделать высоту динамической, чтобы не перекрывало нижнюю часть
+            LazyColumn (modifier = Modifier
+                .fillMaxHeight()
+                .padding(start = 8.dp, end = 8.dp)){
+                items(vacancies) { vacancy ->
+                    VacancyCard(vacancy = vacancy)
+                    Spacer(modifier = Modifier
+                        .height(8.dp))}
             }
         }
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(225.dp)
-                .padding(8.dp),
-            horizontalArrangement = Arrangement.Center
-        ) {
 
-            Image(modifier = Modifier
-                   // .size(400.dp)
-                .clip(shape = RoundedCornerShape(15.dp)),
 
-                painter = painterResource(
-                    id = R.drawable.working
-                ),
-                contentDescription = ""
-            )
-        }
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(40.dp)
-                .padding(8.dp)
-        ) {
-
-            Text(
-                fontSize = 20.sp,
-                text = "Вакансии"
-            )
-        }
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(70.dp)
-                .padding(8.dp)
-        ) {
-
-            Text(
-                fontSize = 13.sp,
-                text = "Присоединяйтесь к сообществу, поскольку в течение 33 дней мы готовимся расслабиться и почувствовать радость вместе с разумом и сеансом счастья по всему миру."
-            )
-        }
-
-        Row (modifier = Modifier
-            .fillMaxWidth()
-            .height(0.7.dp)
-            .padding(start = 8.dp, end = 8.dp)
-            .background(color = colorResource(id = R.color.dart_gray_idk))){
-
-        }
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(40.dp)
-                .padding(8.dp)
-        ) {
-
-            Text(
-                fontSize = 20.sp,
-                text = "Рекомендации"
-            )
-        }
-    }
-
-        // сделать высоту динамической, чтобы не перекрывало нижнюю часть
-
-        LazyColumn (modifier = Modifier
-            .height(275.dp)
-            .padding(start = 8.dp, end = 8.dp)){
-            items(vacancies) { vacancy ->
-                VacancyCard(vacancy = vacancy)
-                Spacer(modifier = Modifier
-                .height(8.dp))}
-        }
 
 
         // Нижняя панель навигации
@@ -230,7 +231,7 @@ fun Vacancy(vacancies: List<Vacancy>, navController: NavController){
 }
 
 @Composable
-fun VacancyCard(vacancy: Vacancy){
+fun EventCard(vacancy: Vacancy){
 
     Row (modifier = Modifier
         .fillMaxWidth()

@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.paddingFrom
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -264,7 +265,7 @@ fun Page(navController: NavController){
                     .height(100.dp)
                     .padding(8.dp)
                     .border((1.dp), color = Color.Black, RoundedCornerShape(20.dp))
-                    .clickable { navController.navigate("VacancyScreen")}
+                    .clickable { navController.navigate("VacancyScreen") }
             ) {
                 Column(modifier = Modifier
                     .fillMaxHeight(),
@@ -299,7 +300,8 @@ fun Page(navController: NavController){
                     .fillMaxWidth()
                     .height(100.dp)
                     .padding(8.dp)
-                    .border((1.dp), color = Color.Black, RoundedCornerShape(20.dp)),
+                    .border((1.dp), color = Color.Black, RoundedCornerShape(20.dp))
+                    .clickable { navController.navigate("InternshipsScreen") },
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Column(modifier = Modifier
@@ -350,8 +352,6 @@ fun Page(navController: NavController){
                     }
                 }
 
-
-
             }
             Row(
                 modifier = Modifier
@@ -359,6 +359,7 @@ fun Page(navController: NavController){
                     .height(100.dp)
                     .padding(8.dp)
                     .border((1.dp), color = Color.Black, RoundedCornerShape(20.dp))
+                    .clickable { navController.navigate("EventsScreen") }
             ) {
                 Column(modifier = Modifier
                     .fillMaxHeight(),
@@ -391,9 +392,12 @@ fun Page(navController: NavController){
 
         // "Нижний" отдел экрана -- раздел с вакансиями и мероприятиями
 
-        Column() {
 
 
+        BottomAppBar(
+
+            containerColor = Color.White
+        ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -410,10 +414,14 @@ fun Page(navController: NavController){
                         modifier = Modifier
                             .size(25.dp),
                         painter = painterResource(id = R.drawable.home),
+                        colorFilter = ColorFilter.tint(color = colorResource(id = R.color.light_purple)),
                         contentDescription = ""
                     )
 
-                    Text(text = "Главная")
+                    Text(
+                        color = colorResource(id = R.color.light_purple),
+                        text = "Главная"
+                    )
                 }
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
@@ -437,14 +445,6 @@ fun Page(navController: NavController){
 
                     Text(text = "Меню")
                 }
-            }
-
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(50.dp)
-            ) {
-
             }
         }
     }
