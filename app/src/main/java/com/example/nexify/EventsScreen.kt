@@ -66,7 +66,7 @@ fun Events(vacancies: List<Vacancy>, navController: NavController){
             Row(modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)
-                .height(50.dp),
+                .weight(1f),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -100,7 +100,7 @@ fun Events(vacancies: List<Vacancy>, navController: NavController){
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(225.dp)
+                    .weight(6f)
                     .padding(8.dp),
                 horizontalArrangement = Arrangement.Center
             ) {
@@ -118,7 +118,7 @@ fun Events(vacancies: List<Vacancy>, navController: NavController){
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(40.dp)
+                    .weight(1f)
                     .padding(8.dp)
             ) {
 
@@ -131,13 +131,13 @@ fun Events(vacancies: List<Vacancy>, navController: NavController){
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(70.dp)
+                    .weight(2f)
                     .padding(8.dp)
             ) {
 
                 Text(
                     fontSize = 13.sp,
-                    text = "Присоединяйтесь к сообществу, поскольку в течение 33 дней мы готовимся расслабиться и почувствовать радость вместе с разумом и сеансом счастья по всему миру."
+                    text = "Присоединяйтесь к сообществу, поскольку именно сейчас мы готовимся хорошо провести время среди единомышленников и узнать что-то новое."
                 )
             }
 
@@ -151,7 +151,7 @@ fun Events(vacancies: List<Vacancy>, navController: NavController){
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(40.dp)
+                    .weight(1f)
                     .padding(8.dp)
             ) {
 
@@ -162,7 +162,7 @@ fun Events(vacancies: List<Vacancy>, navController: NavController){
             }
             // сделать высоту динамической, чтобы не перекрывало нижнюю часть
             LazyColumn (modifier = Modifier
-                .fillMaxHeight()
+                .weight(7f)
                 .padding(start = 8.dp, end = 8.dp)){
                 items(vacancies) { vacancy ->
                     VacancyCard(vacancy = vacancy)

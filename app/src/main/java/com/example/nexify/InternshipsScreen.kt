@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -36,7 +37,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 
 
-@Preview
+@Preview(showSystemUi = true)
 @Composable
 fun MainInternships(){
     Internships(jobs, navController = rememberNavController())
@@ -52,7 +53,8 @@ fun Internships(vacancies: List<Vacancy>, navController: NavController){
         .background(color = Color.White),
         verticalArrangement = Arrangement.SpaceBetween) {
 
-        Column(){
+        Column(modifier = Modifier
+            .weight(1f)){
 
             // Отступ сверху
             Row(
@@ -65,7 +67,7 @@ fun Internships(vacancies: List<Vacancy>, navController: NavController){
             Row(modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)
-                .height(50.dp),
+                .weight(1f),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -99,7 +101,7 @@ fun Internships(vacancies: List<Vacancy>, navController: NavController){
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(225.dp)
+                    .weight(6f)
                     .padding(8.dp),
                 horizontalArrangement = Arrangement.Center
             ) {
@@ -117,7 +119,7 @@ fun Internships(vacancies: List<Vacancy>, navController: NavController){
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(40.dp)
+                    .weight(1f)
                     .padding(8.dp)
             ) {
 
@@ -130,13 +132,13 @@ fun Internships(vacancies: List<Vacancy>, navController: NavController){
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(70.dp)
+                    .weight(2f)
                     .padding(8.dp)
             ) {
 
-                Text(
+                Text(modifier = Modifier,
                     fontSize = 13.sp,
-                    text = "Присоединяйтесь к сообществу, поскольку в течение 33 дней мы готовимся расслабиться и почувствовать радость вместе с разумом и сеансом счастья по всему миру."
+                    text = "Присоединяйтесь к сообществу, поскольку именно сейчас мы помогаем новому поколению получить бесценный опыт работы над реальными проектами."
                 )
             }
 
@@ -150,7 +152,7 @@ fun Internships(vacancies: List<Vacancy>, navController: NavController){
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(40.dp)
+                    .weight(1f)
                     .padding(8.dp)
             ) {
 
@@ -159,19 +161,15 @@ fun Internships(vacancies: List<Vacancy>, navController: NavController){
                     text = "Рекомендации"
                 )
             }
+            LazyColumn (modifier = Modifier
+                .weight(7f)
+                .padding(start = 8.dp, end = 8.dp)){
+                items(vacancies) { vacancy ->
+                    InternshipsCard(vacancy = vacancy)
+                    Spacer(modifier = Modifier
+                        .height(8.dp))}
+            }
         }
-
-        // сделать высоту динамической, чтобы не перекрывало нижнюю часть
-
-        LazyColumn (modifier = Modifier
-            .height(275.dp)
-            .padding(start = 8.dp, end = 8.dp)){
-            items(vacancies) { vacancy ->
-                InternshipsCard(vacancy = vacancy)
-                Spacer(modifier = Modifier
-                    .height(8.dp))}
-        }
-
 
         // Нижняя панель навигации
 
