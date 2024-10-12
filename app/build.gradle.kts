@@ -51,8 +51,20 @@ android {
 
 dependencies {
 
+    // Навигационный элемент compose
     implementation(libs.androidx.navigation.compose)
+
+    // Библиотека для парсинга (не используется)
     implementation(libs.jsoup.v1143)
+
+    implementation(libs.retrofit)
+    implementation(libs.converter.scalars)
+
+    // Корутины для распараллеливания приложения
+    implementation(libs.kotlinx.coroutines.android)
+
+    // Viewmodel для будущего построения более внятной архитектуры
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

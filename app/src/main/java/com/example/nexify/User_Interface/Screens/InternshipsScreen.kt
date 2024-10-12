@@ -1,11 +1,9 @@
-package com.example.nexify
+package com.example.nexify.User_Interface.Screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -24,9 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Canvas
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.motionEventSpy
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,17 +30,22 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.nexify.Data.Internships
+import com.example.nexify.R
+import com.example.nexify.Data.Vacancy
+import com.example.nexify.Data.internships
+import com.example.nexify.Data.jobs
 
 
-@Preview
+@Preview(showSystemUi = true)
 @Composable
 fun MainInternships(){
-    Internships(jobs, navController = rememberNavController())
+    Internships(internships, navController = rememberNavController())
 }
 
 @Composable
 
-fun Internships(vacancies: List<Vacancy>, navController: NavController){
+fun Internships(internships: List<Internships>, navController: NavController){
 
     Column (modifier = Modifier
         .fillMaxSize()
@@ -52,7 +53,8 @@ fun Internships(vacancies: List<Vacancy>, navController: NavController){
         .background(color = Color.White),
         verticalArrangement = Arrangement.SpaceBetween) {
 
-        Column(){
+        Column(modifier = Modifier
+            .weight(1f)){
 
             // Отступ сверху
             Row(
@@ -62,44 +64,10 @@ fun Internships(vacancies: List<Vacancy>, navController: NavController){
             ){
             }
 
-            Row(modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)
-                .height(50.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-
-                Row(modifier = Modifier
-                    .clickable { navController.navigate("MainPage") },
-                verticalAlignment = Alignment.CenterVertically) {
-                    Image(
-                        painter = painterResource(id = R.drawable.back_asset),
-                        contentDescription = ""
-                    )
-
-                    Text(text = "Вернуться")
-                }
-
-                Row() {
-                    Box(modifier = Modifier) {
-                        Image(
-                            painter = painterResource(id = R.drawable.search2_asset),
-                            contentDescription = ""
-                        )
-                    }
-                    Box(modifier = Modifier) {
-                        Image(
-                            painter = painterResource(id = R.drawable.filter_asset),
-                            contentDescription = ""
-                        )
-                    }
-                }
-            }
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(225.dp)
+                    .weight(6f)
                     .padding(8.dp),
                 horizontalArrangement = Arrangement.Center
             ) {
@@ -117,7 +85,7 @@ fun Internships(vacancies: List<Vacancy>, navController: NavController){
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(40.dp)
+                    .weight(1f)
                     .padding(8.dp)
             ) {
 
@@ -130,13 +98,13 @@ fun Internships(vacancies: List<Vacancy>, navController: NavController){
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(70.dp)
+                    .weight(2f)
                     .padding(8.dp)
             ) {
 
-                Text(
+                Text(modifier = Modifier,
                     fontSize = 13.sp,
-                    text = "Присоединяйтесь к сообществу, поскольку в течение 33 дней мы готовимся расслабиться и почувствовать радость вместе с разумом и сеансом счастья по всему миру."
+                    text = "Присоединяйтесь к сообществу, поскольку именно сейчас мы помогаем новому поколению получить бесценный опыт работы над реальными проектами."
                 )
             }
 
@@ -150,7 +118,7 @@ fun Internships(vacancies: List<Vacancy>, navController: NavController){
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(40.dp)
+                    .weight(1f)
                     .padding(8.dp)
             ) {
 
@@ -159,19 +127,15 @@ fun Internships(vacancies: List<Vacancy>, navController: NavController){
                     text = "Рекомендации"
                 )
             }
+            LazyColumn (modifier = Modifier
+                .weight(7f)
+                .padding(start = 8.dp, end = 8.dp)){
+                items(internships) { internship ->
+                    InternshipsCard(internship = internship)
+                    Spacer(modifier = Modifier
+                        .height(8.dp))}
+            }
         }
-
-        // сделать высоту динамической, чтобы не перекрывало нижнюю часть
-
-        LazyColumn (modifier = Modifier
-            .height(275.dp)
-            .padding(start = 8.dp, end = 8.dp)){
-            items(vacancies) { vacancy ->
-                InternshipsCard(vacancy = vacancy)
-                Spacer(modifier = Modifier
-                    .height(8.dp))}
-        }
-
 
         // Нижняя панель навигации
 
@@ -200,37 +164,13 @@ fun Internships(vacancies: List<Vacancy>, navController: NavController){
 
                     Text(text = "Главная")
                 }
-
-                Column (horizontalAlignment = Alignment.CenterHorizontally){
-
-                    Image(modifier = Modifier
-                        .size(25.dp),
-                        painter = painterResource(id = R.drawable.ticket),
-                        contentDescription = ""
-                    )
-
-                    Text(text = "Лента")
-                }
-
-                Column (horizontalAlignment = Alignment.CenterHorizontally){
-
-                    Image(modifier = Modifier
-                        .size(25.dp),
-                        painter = painterResource(id = R.drawable.menu),
-                        contentDescription = ""
-                    )
-
-                    Text(text = "Меню")
-                }
-
-
             }
         }
     }
 }
 
 @Composable
-fun InternshipsCard(vacancy: Vacancy){
+fun InternshipsCard(internship: Internships){
 
     Row (modifier = Modifier
         .fillMaxWidth()
@@ -262,7 +202,6 @@ fun InternshipsCard(vacancy: Vacancy){
 
                     }
 
-                    // отступ (возможно это можно сделать более красиво, но пока так)
                     Column(modifier = Modifier
                         .height(65.dp)
                         .width(10.dp)){
@@ -274,39 +213,9 @@ fun InternshipsCard(vacancy: Vacancy){
                         .width(200.dp)
                     ){
                         Text(fontSize = 16.sp,
-                            text = vacancy.title)
-
-                        Row (modifier = Modifier
-                            .fillMaxWidth(),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.SpaceBetween){
-
-                            Text(color = colorResource(id = R.color.dart_gray_idk),
-                                text = vacancy.bpoint1)
+                            text = internship.title)
 
 
-                            // маленький кружочек :3
-                            Column (modifier = Modifier
-                                .size(3.dp)
-                                .clip(shape = RoundedCornerShape(5.dp))
-                                .background(color = colorResource(id = R.color.very_dark_gray))
-                            ){
-                            }
-
-                            Text(color = colorResource(id = R.color.dart_gray_idk),
-                                text = vacancy.bpoint2)
-
-                            // ещё один маленький кружочек
-                            Column (modifier = Modifier
-                                .size(3.dp)
-                                .clip(shape = RoundedCornerShape(5.dp))
-                                .background(color = colorResource(id = R.color.very_dark_gray))
-                            ){
-                            }
-
-                            Text(color = colorResource(id = R.color.dart_gray_idk),
-                                text = vacancy.bpoint3)
-                        }
                     }
                 }
                 Image(modifier = Modifier
@@ -329,12 +238,12 @@ fun InternshipsCard(vacancy: Vacancy){
                 verticalAlignment = Alignment.CenterVertically){
                 Row(modifier = Modifier,
                 ){
-                    Text("\$${vacancy.salary}")
+                    Text("\$${internship.salary}")
                     Text(color = colorResource(id = R.color.dart_gray_idk),
                         text = " / Month")
                 }
 
-                Text(vacancy.howLongAgo)
+
 
             }
         }

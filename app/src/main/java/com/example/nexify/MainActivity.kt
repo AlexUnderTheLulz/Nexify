@@ -1,32 +1,32 @@
 package com.example.nexify
 
 import android.os.Bundle
+
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.nexify.ui.theme.NexifyTheme
+import com.example.nexify.Data.internships
+import com.example.nexify.Data.jobs
+import com.example.nexify.User_Interface.Screens.Events
+import com.example.nexify.User_Interface.Screens.Internships
+import com.example.nexify.User_Interface.Screens.Page
+import com.example.nexify.User_Interface.Screens.Vacancy
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+
             val navController = rememberNavController()
 
             NavHost(
                 navController = navController,
-                startDestination = "MainPage", builder = {
-
+                startDestination = "MainPage"
+            ){
                 composable("MainPage"){
                     Page(navController)
                 }
@@ -40,10 +40,9 @@ class MainActivity : ComponentActivity() {
                 }
 
                 composable("InternshipsScreen"){
-                    Internships(vacancies = jobs, navController)
+                    Internships(internships = internships, navController)
                 }
             }
-            )
         }
     }
 }
